@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" data-ng-app="App">
+    <head>
+        <meta charset="utf-8">
+        <title>AngularJS</title>
+        <link rel="stylesheet" href="assets/vendor/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/component.css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700|Open+Sans:400,300,700">
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <div class="col-md-12">
+                    <h1><a href="#">blogMV*</a></h1>
+                </div>
+            </div>
+        </header>
+
+        <div class="jumbotron">
+            <div class="container">
+                <h1>AngularJS</h1>
+                <p>This is an example of the Single Page App built with AngularJS.</p>
+            </div>
+        </div>
+
+        <section class="container main">
+            <div class="row">
+                <div class="col-md-3">
+                    <h2>JS News</h2>
+                    <ul class="list-group">
+                        <li class="list-group-item" data-ng-repeat="article in articles">
+                            <a ng-href="#/article/{{article.id}}" class="list-group-item">{{article.title}}</a>
+                        </li>
+                    </ul>
+                </div><!--col-md-3-->
+
+                <section class="col-md-9" data-ng-view>
+                    <article>
+                        <h2>{{article.title}}</h2>
+                        <p>{{article.content}}</p>
+                    </article>
+
+                    <h2>Discussion</h2>
+
+                    <ul class="discussion">
+                        <li data-ng-repeat="comment in comments">
+                            <b>{{comment.author.name || comment.author.email}}</b>
+                            <p>{{comment.content}}</p>
+                        </li>
+                    </ul>
+                </section><!--col-md-9-->
+            </div>
+
+        </section><!-- container -->
+
+        <section class="comments" data-ng-controller="comment.controller">
+            <h3>Write a comment</h3>
+
+            <form role="form" data-ng-submit="commentsend(article.id, comment)">
+                <div class="form-group col-md-6">
+                    <input type="text" id="name" data-ng-model="comment.author_name" class="form-control input-lg" placeholder="Name">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <input type="email" id="email" data-ng-model="comment.author_email" class="form-control input-lg" placeholder="Email">
+                </div>
+
+                <div class="form-group col-md-12">
+                    <textarea class="form-control input-lg" data-ng-model="comment.content" placeholder="Comment"></textarea>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Post comment</button>
+                </div>
+            </form>
+        </section>
+
+        <footer id="footer">
+            <p>
+                Made with ❤ by a bunch of geeks from the island of magic |
+                <a href="https://twitter.com/zigolis">@zigolis</a>
+                <a href="https://twitter.com/fjorgemota">@fjorgemota</a>
+                <a href="https://twitter.com/chiefgui">@chiefgui</a>
+                <a href="https://twitter.com/rcarvalhojs">@rcarvalhojs</a>
+                <a href="https://twitter.com/luizstacio">@luizstacio</a>
+            </p>
+        </footer>
+
+    <script type="text/javascript" src="assets/vendor/angular/angular.min.js"></script>
+    <script type="text/javascript" src="assets/vendor/angular-route/angular-route.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/app/app.js"></script>
+    <script type="text/javascript" src="assets/js/app/routes.js"></script>
+    <script type="text/javascript" src="assets/js/app/modules/article/service.js"></script>
+    <script type="text/javascript" src="assets/js/app/modules/article/controller.js"></script>
+    <script type="text/javascript" src="assets/js/app/modules/comment/service.js"></script>
+    <script type="text/javascript" src="assets/js/app/modules/comment/controller.js"></script>
+    </body>
+</html>
