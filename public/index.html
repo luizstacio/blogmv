@@ -1,12 +1,19 @@
 <!doctype html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title>AngularJS blog</title>
 
-<link rel="stylesheet" href="assets/vendor/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/component.css">
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700|Open+Sans:400,300,700">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>AngularJS blog</title>
 
-<script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
-<script src="/assets/vendor/angular/angular.min.js"></script>
-<script src="/assets/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <link rel="stylesheet" href="assets/vendor/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/component.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700|Open+Sans:400,300,700">
+</head>
+
+<body ng-app="blogmv">
+  <div ui-view></div>
+  <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/assets/vendor/angular/angular.min.js"></script>
+  <script src="/assets/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/assets/app.js"></script>
+</body>

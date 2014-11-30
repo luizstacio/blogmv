@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var multipipe = require('multipipe');
 var colors = require('chalk');
-var JS_FILES = ['public/assets/js/blog/module.js', 'public/assets/js/**/module.js', 'assets/js/**/*.js'];
+var JS_FILES = ['public/assets/js/blog/module.js', 'public/assets/js/**/module.js', 'public/assets/js/**/*.js'];
 
 gulp.task('build', buildJsFiles);
 gulp.task('watch', function() {
