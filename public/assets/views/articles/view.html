@@ -1,0 +1,35 @@
+<article>
+  <h2>{{article.title}}</h2>
+  <p>{{article.content}}</p>
+</article>
+
+<aside>
+  <h2>Discussion</h2>
+  <ul class="discussion">
+    <li data-ng-repeat="comment in comments">
+      <b>{{comment.author.name}} <br/>
+      <small>{{comment.author.email}}</small></b>
+      <p>{{comment.content}}</p>
+    </li>
+  </ul>
+
+  <section class="comments">
+    <h3>Write a comment</h3>
+
+    <form role="form" data-ng-submit="saveComment()">
+      <div class="form-group col-sm-6">
+        <input type="text" id="name" data-ng-model="comment.author.name" class="form-control input-lg" placeholder="Name">
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="email" id="email" data-ng-model="comment.author.email" class="form-control input-lg" placeholder="E-mail">
+      </div>
+
+      <div class="form-group col-sm-12">
+        <textarea class="form-control input-lg" data-ng-model="comment.content" placeholder="Comment"></textarea>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Post comment</button>
+      </div>
+    </form>
+  </section>
+
+</aside>
