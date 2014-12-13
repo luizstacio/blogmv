@@ -1,6 +1,11 @@
 <h2>JS News</h2>
-<ul class="list-group">
-  <li class="list-group-item" data-ng-repeat="article in articles">
-    <a ui-sref="blog.article-view({id: article.id})" class="list-group-item">{{article.title}}</a>
-  </li>
-</ul>
+<div class="row">
+    <div class="col-sm-3">
+        <ul class="list-group">
+            <li class="list-group-item" data-ng-repeat="article in articles">
+                <a ui-sref="blog.articles.view({id: article.id})" class="list-group-item">{{article.title}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-9" ui-view=""></div>
+</div>
