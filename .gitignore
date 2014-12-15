@@ -1,5 +1,5 @@
 .DS_Store
 __
-assets/vendor/
+public/assets/vendor/
 node_modules
 npm-debug.log

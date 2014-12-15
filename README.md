@@ -1,9 +1,26 @@
-blogMV* Skeleton
-================
+# blogMV* Skeleton
 
-This is the skeleton which we are gonna use to build our SPA with Backbone and
-other technologies through an API built with Python using Google App Engine to
-host blogMV* data.
+This is the skeleton which we are gonna use to build our SPA with AngularJS>
 
-**Attention:** Do not forget to do `bower install` on baby-steps folder to get your
-front-end dependencies (jQuery and Bootstrap so far) working.
+The backend API is built on Python using Google App Engine to host blogMV* data.
+
+
+# Instalation
+
+- Clone the repository
+
+- `npm install`
+
+- `bower install`
+
+- `gulp serve`
+
+- Open your browser and go to `localhost:8000`
+
+# Coding
+
+Before you start, in a second terminal, run `gulp watch`
+
+You can install this Chrome Extension if you want, to automatically reload the page when you save a file:
+(LiveReload)[https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei]
+

@@ -35,74 +35,78 @@ function ArticleService($q, $http) {
   };
 }
 
-angular.module('blogmv.articles').controller('Article/ListController', Article_ListController);
+angular.module('blogmv').controller('Article/ListController', Article_ListController);
 
-function Article_ListController($scope, ArticleService) {
-  ArticleService.findAll().then(function(list) {
-    $scope.articles = list;
-  });
+function Article_ListController($scope, $state, ArticleService) {
+    ArticleService.findAll().then(function(list) {
+        $scope.articles = list;
+
+        $state.go('blog.articles.view', {
+            id: list[0].id
+        });
+    });
 }
 
-angular.module('blogmv.articles').controller('Article/ViewController', Article_ViewController);
+angular.module('blogmv').controller('Article/ViewController', Article_ViewController);
 
 function Article_ViewController($scope, $stateParams, ArticleService, CommentService) {
-  var articleId = $stateParams.id;
+    var articleId = $stateParams.id;
 
-  ArticleService.findOne(articleId).then(function(item) {
-    $scope.article = item;
-  });
-
-  CommentService.findAll(articleId).then(function(comments) {
-    $scope.comments = comments;
-  });
-
-  $scope.saveComment = function() {
-    var comment = $scope.comment;
-
-    CommentService.save(articleId, comment).then(function() {
-      $scope.comments.push(comment);
-      resetCommentForm();
+    ArticleService.findOne(articleId).then(function(item) {
+        $scope.article = item;
     });
-  };
 
-  function resetCommentForm() {
-    $scope.comment = {
-      author: {}
+    CommentService.findAll(articleId).then(function(comments) {
+        $scope.comments = comments;
+    });
+
+    $scope.saveComment = function() {
+        var comment = $scope.comment;
+
+        CommentService.save(articleId, comment).then(function() {
+            $scope.comments.push(comment);
+            resetCommentForm();
+        });
     };
-  }
 
-  resetCommentForm();
+    function resetCommentForm() {
+        $scope.comment = {
+            author: {}
+        };
+    }
+
+    resetCommentForm();
 }
 
 angular.module('blogmv').config(function($stateProvider, $urlRouterProvider) {
-  var routes = {
-    'blog': {
-      url: '',
-      templateUrl: '/blog/layout.html'
-    },
+    var routes = {
+        'blog': {
+            url: '',
+            templateUrl: '/blog/layout.html'
+        },
 
-    'blog.article-list': {
-      url: '/articles',
-      templateUrl: '/articles/list.html',
-      controller: 'Article/ListController'
-    },
+        'blog.articles': {
+            url: '/articles',
+            templateUrl: '/articles/list.html',
+            controller: 'Article/ListController'
+        },
 
-    'blog.article-view': {
-      url: '/articles/:id',
-      templateUrl: '/articles/view.html',
-      controller: 'Article/ViewController'
-    }
-  };
+        'blog.articles.view': {
+            url: '/:id',
+            templateUrl: '/articles/view.html',
+            controller: 'Article/ViewController'
+        }
+    };
 
-  $urlRouterProvider.when('', '/articles');
+    $urlRouterProvider.when('', '/articles');
 
-  angular.forEach(routes, function(config, name) {
-    if (config.templateUrl) {
-      config.templateUrl = '/assets/views' + config.templateUrl;
-    }
+    angular.forEach(routes, function(config, name) {
+        if (config.templateUrl) {
+            config.templateUrl = '/assets/views' + config.templateUrl;
+        }
 
-    $stateProvider.state(name, config);
-  });
+        $stateProvider.state(name, config);
+    });
 });
 
 angular.module('blogmv.comments').service('CommentService', CommentService);
